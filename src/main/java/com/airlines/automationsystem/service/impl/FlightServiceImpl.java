@@ -30,6 +30,7 @@ public class FlightServiceImpl implements FlightService {
             throw new ObjectNotFoundException("Company not found");
 
         Flight exFlight = existedFlight.get();
+        exFlight.setDate(flight.getDate());
         exFlight.setFirst_price(flight.getFirst_price());
         exFlight.setQuota(flight.getQuota());
         exFlight.setSold(flight.getSold());

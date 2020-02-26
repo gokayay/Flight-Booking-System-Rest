@@ -1,6 +1,7 @@
 package com.airlines.automationsystem.controller;
 
 import com.airlines.automationsystem.model.Ticket;
+import com.airlines.automationsystem.service.TicketOperationService;
 import com.airlines.automationsystem.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,29 @@ public class TicketController {
 
     @Autowired
     TicketService ticketService;
+
+    @Autowired
+    TicketOperationService ticketOperationService;
+
+
+    // PURCHASE AND CANCEL TICKETS
+
+    //Purchase
+    @PostMapping(value = "/purchase")
+    public ResponseEntity<String> purchase(@RequestBody Ticket ticket) {
+        ticketOperationService.purchaseTicket(ticket);
+        return new ResponseEntity<>("ticket purchased", HttpStatus.OK);
+    }
+
+    //Cancel
+    //I've used put request for cancel instead of delete request
+    //Because i shouldn't delete ticket info for cancelling; i should update ticket's validity data.
+    @PutMapping("/cancel/{id}")
+    public ResponseEntity<String> cancel(@PathVariable  Long id,@RequestBody Ticket ticket){
+        ticketOperationService.cancelTicket(id,ticket);
+        return new ResponseEntity<>("ticket canceled", HttpStatus.OK);
+    }
+
 
     // GET
 
