@@ -52,4 +52,10 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.findAll();
 
     }
+
+    @Override
+    public List<Company> getCompanyBySearch(String company) {
+
+        return companyRepository.findCompanyBySearch(company);
+    }
 }

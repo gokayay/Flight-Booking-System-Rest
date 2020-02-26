@@ -13,7 +13,7 @@ public interface TicketService {
 
     void deleteTicket(Long id);
 
-    Optional<Ticket> getOneTicket(Long id);
+    Optional<Ticket> getOneTicket(Long id); // search by ticket id
 
     List<Ticket> getAllTickets();
 }

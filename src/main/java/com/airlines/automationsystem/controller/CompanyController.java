@@ -17,6 +17,14 @@ public class CompanyController {
     @Autowired
     CompanyService companyService;
 
+    // SEARCH
+
+    @GetMapping("/company-search")
+    @ResponseBody
+    public ResponseEntity<List<Company>> findAirportsBySearch(@RequestParam(value = "company_name") String company) {
+        return new ResponseEntity<>(companyService.getCompanyBySearch(company), HttpStatus.OK);
+    }
+
     // GET
 
     @GetMapping("")

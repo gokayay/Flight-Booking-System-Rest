@@ -16,4 +16,6 @@ public interface CompanyService {
     Optional<Company> getOneCompany(Long id);
 
     List<Company> getAllCompanies();
+
+    List<Company> getCompanyBySearch(String company);
 }

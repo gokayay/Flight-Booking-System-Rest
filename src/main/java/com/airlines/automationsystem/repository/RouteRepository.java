@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface RouteRepository extends JpaRepository<Route,Long> {
 
-    Optional<Route> findById(Long id);
+    Optional<Route> findById(Long id); //search by route id
 
     @Override
     List<Route> findAll(Sort sort);

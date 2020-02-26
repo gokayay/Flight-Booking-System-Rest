@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight,Long> {
 
-    Optional<Flight> findById(Long id);
+    Optional<Flight> findById(Long id);  // search by flight id
 
     @Override
     List<Flight> findAll(Sort sort);

@@ -5,6 +5,8 @@ import com.airlines.automationsystem.model.Airport;
 import com.airlines.automationsystem.repository.AirportRepository;
 import com.airlines.automationsystem.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +53,12 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public List<Airport> getAllAirports() {
         return airportRepository.findAll();
+    }
+
+
+    @Override
+    public List<Airport> getAirportBySearch(String airport) {
+
+        return airportRepository.findAirportBySearch(airport);
     }
 }

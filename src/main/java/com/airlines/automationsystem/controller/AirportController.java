@@ -3,6 +3,8 @@ package com.airlines.automationsystem.controller;
 import com.airlines.automationsystem.model.Airport;
 import com.airlines.automationsystem.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,14 @@ public class AirportController {
 
     @Autowired
     AirportService airportService;
+
+    // SEARCH
+
+    @GetMapping("/airport-search")
+    @ResponseBody
+    public ResponseEntity<List<Airport>> findAirportsBySearch(@RequestParam(value = "airport_name") String airport) {
+        return new ResponseEntity<>(airportService.getAirportBySearch(airport), HttpStatus.OK);
+    }
 
     // GET
 

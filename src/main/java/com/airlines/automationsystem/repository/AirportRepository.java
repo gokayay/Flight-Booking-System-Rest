@@ -1,8 +1,12 @@
 package com.airlines.automationsystem.repository;
 
+import com.airlines.automationsystem.constant.ConstantStrings;
 import com.airlines.automationsystem.model.Airport;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +19,8 @@ public interface AirportRepository extends JpaRepository<Airport,Long> {
 
     @Override
     List<Airport> findAll(Sort sort);
+
+    @Query(value = ConstantStrings.Query.getAirportBySearch, nativeQuery = true)
+    List<Airport> findAirportBySearch(String airport_name);
+
 }
