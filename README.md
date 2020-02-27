@@ -665,8 +665,14 @@ This is flight booking system project that used following technologies
 ### Database 
 ------
   - You can see the database schema below "/documents" folder.
-  - 
+    ![alt text](https://raw.githubusercontent.com/gokayay/Flight-Booking-System-Rest/master/documents/DatabaseDiagram.png)
+
 ### Code Binding 
 ------
   - You can also see how the things work in spring boot project below "/documents" folder.
+  
+![alt text](https://raw.githubusercontent.com/gokayay/Flight-Booking-System-Rest/master/documents/spring%20schema.png)
 
+### More Info
+------
+- For more info, do not hesitate to contact me!
