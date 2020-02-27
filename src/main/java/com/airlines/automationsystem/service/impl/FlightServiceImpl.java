@@ -27,7 +27,7 @@ public class FlightServiceImpl implements FlightService {
         Optional<Flight> existedFlight = flightRepository.findById(id);
 
         if (!existedFlight.isPresent())
-            throw new ObjectNotFoundException("Company not found");
+            throw new ObjectNotFoundException("Flight not found");
 
         Flight exFlight = existedFlight.get();
         exFlight.setDate(flight.getDate());

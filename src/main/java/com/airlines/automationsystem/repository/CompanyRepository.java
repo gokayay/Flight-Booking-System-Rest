@@ -18,6 +18,6 @@ public interface CompanyRepository extends JpaRepository<Company,Long> {
     @Override
     List<Company> findAll(Sort sort);
 
-    @Query(value = ConstantStrings.Query.getCompanyBySearch, nativeQuery = true)
+    @Query(value = ConstantStrings.Query.getCompanyBySearch, nativeQuery = true)  // query for company search
     List<Company> findCompanyBySearch(String company_name);
 }

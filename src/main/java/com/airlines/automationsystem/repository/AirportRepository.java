@@ -20,7 +20,7 @@ public interface AirportRepository extends JpaRepository<Airport,Long> {
     @Override
     List<Airport> findAll(Sort sort);
 
-    @Query(value = ConstantStrings.Query.getAirportBySearch, nativeQuery = true)
+    @Query(value = ConstantStrings.Query.getAirportBySearch, nativeQuery = true) // query for airport searching
     List<Airport> findAirportBySearch(String airport_name);
 
 }

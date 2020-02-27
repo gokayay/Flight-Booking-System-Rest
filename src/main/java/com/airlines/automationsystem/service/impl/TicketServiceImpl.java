@@ -27,7 +27,7 @@ public class TicketServiceImpl implements TicketService {
         Optional<Ticket> existedTicket = ticketRepository.findById(id);
 
         if (!existedTicket.isPresent())
-            throw new ObjectNotFoundException("Company not found");
+            throw new ObjectNotFoundException("Ticket not found");
 
         Ticket exTicket = existedTicket.get();
         exTicket.setPerson_name(ticket.getPerson_name());

@@ -26,7 +26,7 @@ public class RouteServiceImpl implements RouteService {
         Optional<Route> existedRoute = routeRepository.findById(id);
 
         if (!existedRoute.isPresent())
-            throw new ObjectNotFoundException("Company not found");
+            throw new ObjectNotFoundException("Route not found");
 
         Route exRoute = existedRoute.get();
         exRoute.setDeparture_airport(route.getDeparture_airport());

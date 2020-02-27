@@ -21,14 +21,19 @@ public class TicketOperationServiceImpl implements TicketOperationService {
     @Autowired
     FlightRepository flightRepository;
 
+    @Override
     public void purchaseTicket(Ticket ticket){
         Date purchasingDate = new Date();
         Long flight_id = ticket.getFlight().getId();
 
+        Optional<Flight> tickets_flight = flightRepository.findById(flight_id);
+        if (!tickets_flight.isPresent())
+            throw new ObjectNotFoundException("Flight not found");
 
-        Integer quota = ticket.getFlight().getQuota();
-        Integer sold = ticket.getFlight().getSold();
-        Double price = ticket.getFlight().getFirst_price();
+        Flight flightOfTicket = tickets_flight.get();
+        Integer quota = flightOfTicket.getQuota();
+        Integer sold = flightOfTicket.getSold();
+        Double price = flightOfTicket.getFirst_price();
 
         Double percent = (double) sold/quota;
 
@@ -71,24 +76,16 @@ public class TicketOperationServiceImpl implements TicketOperationService {
             ticket.setValidity(false);
         }
 
-
-        if(ticket.getValidity()==true){
-            Optional<Flight> flight_old_sold = flightRepository.findById(flight_id);
-            if (!flight_old_sold.isPresent())
-                throw new ObjectNotFoundException("Flight not found");
-
-            Flight flight_new_sold = flight_old_sold.get();
-
-            flight_new_sold.setSold(flight_new_sold.getSold()+1);
-            flightRepository.save(flight_new_sold);
-        }
+        flightOfTicket.setSold(flightOfTicket.getSold()+1);
+        flightRepository.save(flightOfTicket);
 
         ticket.setDate(purchasingDate);
         ticket.setPrice(price);
+        ticket.setValidity(true);
         ticketRepository.save(ticket);
     }
 
-
+    @Override
     public void cancelTicket (Long id, Ticket ticket){
         Date cancelingDate = new Date();
         Long flight_id = ticket.getFlight().getId();
